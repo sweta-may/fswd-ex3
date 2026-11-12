@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./App.css";
+ import "./App.css";
+
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 function App() {
   const [feedback, setFeedback] = useState({
@@ -21,7 +23,7 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/feedback", feedback);
+      await axios.post(`${API_BASE_URL}/api/feedback`, feedback);
       alert("Feedback submitted successfully!");
       setFeedback({ q1: "", q2: "", q3: "", q4: "", q5: "" });
     } catch (error) {
